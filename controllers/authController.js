@@ -4,9 +4,9 @@ const User = require('../models/usersModels');
 
 exports.registerUser = async (req, res) => {
     try {
-        const { name, password } = req.body;
+        const { username, password,address } = req.body;
 
-        if (!name || !password) {
+        if (!username || !password || !address) {
             return res.status(400).json({ error: "Missing required fields, including password." });
         }
 
@@ -15,11 +15,12 @@ exports.registerUser = async (req, res) => {
      
             const newUser = new User({
              
-                name,
+                username,
                 password: hashedPassword,
+                address
             });
             await newUser.save();
-            return res.status(201).json({ message: "Student registered successfully", user: newUser });
+            return res.status(201).json({ message: "User registered successfully", user: newUser });
         
     } catch (err) {
         console.error("Error registering user:", err.message);
