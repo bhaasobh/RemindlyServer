@@ -3,10 +3,12 @@ const bcrypt = require('bcrypt');
 const User = require('../models/usersModels');
 
 exports.registerUser = async (req, res) => {
+   
     try {
-        const { name, password } = req.body;
-
-        if (!name || !password) {
+        const { username, password , address } = req.body;
+        console.log(req.body);
+        if (!username || !password || !address) {
+            console("Missing required fields, including password.");
             return res.status(400).json({ error: "Missing required fields, including password." });
         }
 
@@ -15,11 +17,13 @@ exports.registerUser = async (req, res) => {
      
             const newUser = new User({
              
-                name,
+                username,
                 password: hashedPassword,
+                address
             });
             await newUser.save();
-            return res.status(201).json({ message: "Student registered successfully", user: newUser });
+            console.log("user registered successfully");
+            return res.status(201).json({ message: "user registered successfully", user: newUser });
         
     } catch (err) {
         console.error("Error registering user:", err.message);
@@ -29,10 +33,10 @@ exports.registerUser = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        const { role, name, password } = req.body;
+        const { role, username, password } = req.body;
 
         const userModel = User;
-        const user = await userModel.findOne({ name });
+        const user = await userModel.findOne({ username });
         if (!user) return res.status(404).json({ error: 'User not found' });
 
         // Validate password
