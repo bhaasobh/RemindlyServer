@@ -14,7 +14,6 @@ exports.registerUser = async (req, res) => {
 
      
             const newUser = new User({
-             
                 username,
                 password: hashedPassword,
                 address
@@ -30,10 +29,10 @@ exports.registerUser = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        const { role, name, password } = req.body;
+        const {  username, password } = req.body;
 
         const userModel = User;
-        const user = await userModel.findOne({ name });
+        const user = await userModel.findOne({ username });
         if (!user) return res.status(404).json({ error: 'User not found' });
 
         // Validate password
