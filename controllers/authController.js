@@ -23,7 +23,10 @@ exports.registerUser = async (req, res) => {
         
     } catch (err) {
         console.error("Error registering user:", err.message);
-        res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ error: "Internal server error => ",
+                                errormassae : err.message,
+                                err : err
+        });
     }
 };
 
