@@ -26,34 +26,6 @@ exports.addReminder = async (req, res) => {
 
 
 
-exports.addReminder = async (req, res) => {
-  try {
-    const { reminderType, title, address, Details } = req.body;
-
-    if (!reminderType || !title || !address || !Details) {
-      return res.status(400).json({ error: 'Missing required fields.' });
-    }
-
-    const newReminder = new Reminder({
-      reminderType,
-      title,
-      address,
-      Details,
-    });
-
-    await newReminder.save();
-    return res.status(201).json({ message: 'Reminder added successfully', reminder: newReminder });
-  } catch (err) {
-    console.error('Error adding reminder:', err.message);
-    res.status(500).json({
-      error: 'Internal server error',
-      errorMessage: err.message,
-      err,
-    });
-  }
-};
-
-// Fetch reminders
 exports.getReminders = async (req, res) => {
   try {
     const filters = req.query; // Query parameters for filtering, if any
