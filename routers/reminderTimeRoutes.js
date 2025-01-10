@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const reminderController = require('../controllers/reminderController');
+const reminderController = require('../controllers/reminderTimeController');
 
 // Get all reminders
 router.get('/', reminderController.getReminders);

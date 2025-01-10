@@ -5,7 +5,8 @@ const dotenv = require("dotenv");
 const authRoutes = require("./routers/authRoutes");
 const setupWebSocket = require("./websocket");
 const locationRouter = require("./routers/locationRoutes");
-const reminderRouter = require("./routers/reminderRoutes");
+const reminderLocaionRouter = require("./routers/reminderLocaionRoutes");
+const reminderTimeRouter = require("./routers/reminderTimeRoutes");
 
 dotenv.config();
 
@@ -24,7 +25,8 @@ app.get("/auth", async (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/locations", locationRouter);
-app.use("/api/reminder", reminderRouter);
+app.use("/api/reminderLocation", reminderLocaionRouter);
+app.use("/api/reminderTime", reminderTimeRouter);
 
 // Create HTTP server and integrate WebSocket
 const server = http.createServer(app);
