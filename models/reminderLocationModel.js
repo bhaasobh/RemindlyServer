@@ -7,9 +7,9 @@ const reminderLocationSchema = new mongoose.Schema({
     address: { type: addressSchema, required: true },
    radius:{type : Number , default:200},
   time:{type : Date ,  default: Date.now },
-   Details:{type : String}
-},
-{collection :'LocationReminders'});
+  active:{type:Boolean , default : true},
+   details:{type : String}
+});
 
 const ReminderLocation = mongoose.model('ReminderLocation',reminderLocationSchema);
 

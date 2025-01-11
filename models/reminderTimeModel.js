@@ -7,9 +7,9 @@ const reminderTimeSchema = new mongoose.Schema({
     address: { type: addressSchema},
   createTime:{type : Date ,  default: Date.now },
   Time:{type : Date ,required : true},
+  active:{type:Boolean , default : true},
    Details:{type : String}
-},
-{collection :'TimeReminders'});
+});
 
 const ReminderTime = mongoose.model('ReminderTime',reminderTimeSchema);
 

@@ -3,13 +3,11 @@ const addressSchema = require('./addressModel'); // Correctly import addressSche
 
 const personalItemSchema = new mongoose.Schema(
   {
-    username: { type: String, required: true, unique: true },
     address: { type: addressSchema, required: true }, 
     itemName:{type:String,required:true}
-  },
-  { collection: 'Personal Items' }
+  }
 );
 
-const User = mongoose.model('PersonalItem', personalItemSchema);
+const PersonalItem = mongoose.model('PersonalItem', personalItemSchema);
 
-module.exports = User;
+module.exports = PersonalItem;

@@ -2,19 +2,9 @@ const express = require('express');
 const router = express.Router();
 const reminderController = require('../controllers/reminderTimeController');
 
-// Get all reminders
-router.get('/', reminderController.getReminders);
 
-// Get a specific reminder by ID
-router.get('/:id', reminderController.getReminderById);
-
-// Add a reminder
-router.post('/add', reminderController.addReminder);
-
-// Update a reminder
-router.put('/:id', reminderController.updateReminder);
-
-// Delete a reminder
-router.delete('/:id', reminderController.deleteReminder);
+router.get('/:id', reminderController.getReminderTime); // Get a time reminder by ID
+router.put('/:id', reminderController.updateReminderTime); // Update a time reminder by ID
+router.delete('/:id', reminderController.deleteReminderTime);
 
 module.exports = router;

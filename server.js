@@ -2,9 +2,8 @@ const express = require("express");
 const http = require("http");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const authRoutes = require("./routers/authRoutes");
+const authRoutes = require("./routers/userRoutes");
 const setupWebSocket = require("./websocket");
-const locationRouter = require("./routers/locationRoutes");
 const reminderLocaionRouter = require("./routers/reminderLocaionRoutes");
 const reminderTimeRouter = require("./routers/reminderTimeRoutes");
 const personalItemRouter = require("./routers/personalItemsRoutes");
@@ -24,11 +23,10 @@ app.get("/auth", async (req, res) => {
   res.json({ token });
 });
 
-app.use("/api/auth", authRoutes);
-app.use("/api/locations", locationRouter);
-app.use("/api/reminderLocation", reminderLocaionRouter);
-app.use("/api/reminderTime", reminderTimeRouter);
-app.use("/api/personalItems", personalItemRouter);
+app.use("/api/users", authRoutes);
+app.use("/api/location-reminders", reminderLocaionRouter);
+app.use("/api/time-reminders", reminderTimeRouter);
+app.use("/api/personal-items", personalItemRouter);
 
 // Create HTTP server and integrate WebSocket
 const server = http.createServer(app);
