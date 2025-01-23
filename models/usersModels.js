@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema(
       },
     timeReminders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ReminderTime' }], // Reference Time Reminders
     locationReminders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ReminderLocation' }], // Reference Location Reminders
-    personalItems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PersonalItem' }], // Reference Personal Items
+    personalItems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PersonalItem' }],
+    ShopingList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PersonalItem' }], 
   },
   { collection: 'users' }
 );
